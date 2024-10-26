@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reporty Error Reporter</title>
+    <style>
+        .chat-bubble {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background-color: #007bff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .chat-window {
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            width: 300px;
+            height: 300px;
+            background-color: white;
+            border: 1px solid #ddd;
+            display: none;
+            flex-direction: column;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .chat-header {
+            background-color: #007bff;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .chat-body {
+            flex-grow: 1;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .chat-footer {
+            padding: 10px;
+            border-top: 1px solid #ddd;
+        }
+
+        .chat-footer input, .chat-footer textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .submit-btn {
+            background-color: #007bff;
+            color: white;
+            padding: 8px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-bubble" id="chatBubble">
+        💬
+    </div>
+
+    <div class="chat-window" id="chatWindow">
+        <div class="chat-header">
+            Report an Issue
+        </div>
+        <div class="chat-body">
+            <input type="text" id="errorSource" placeholder="Source of Error" />
+            <textarea id="errorDetails" placeholder="Details of the error"></textarea>
+        </div>
+        <div class="chat-footer">
+            <button class="submit-btn" id="submitError">Submit</button>
+        </div>
+    </div>
+
+    <script>
+        const chatBubble = document.getElementById('chatBubble');
+        const chatWindow = document.getElementById('chatWindow');
+        const submitBtn = document.getElementById('submitError');
+
+        chatBubble.addEventListener('click', () => {
+            chatWindow.style.display = chatWindow.style.display === 'none' ? 'flex' : 'none';
+        });
+
+        submitBtn.addEventListener('click', async () => {
+            const errorSource = document.getElementById('errorSource').value;
+            const errorDetails = document.getElementById('errorDetails').value;
+
+            const response = await fetch('/api/log_error', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    message: 'An error occurred',
+                    source: errorSource,
+                    details: errorDetails
+                })
+            });
+
+            if (response.ok) {
+                alert('Error report submitted successfully');
+                chatWindow.style.display = 'none';
+            } else {
+                alert('Failed to submit error report');
+            }
+        });
+    </script>
+</body>
+</html>
