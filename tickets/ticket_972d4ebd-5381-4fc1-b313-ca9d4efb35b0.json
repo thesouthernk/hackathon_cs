@@ -6,8 +6,8 @@
         ]
     ],
     "apis_to_call": [
-        "https://1902-179-56-184-112.ngrok-free.app/fakeapp/list_phone_numbers",
-        "https://1902-179-56-184-112.ngrok-free.app/fakeapp/associate_phone_number_to_chatbot"
+        "http://192.241.152.4:4000/fakeapp/list_phone_numbers",
+        "http://192.241.152.4:4000/fakeapp/associate_phone_number_to_chatbot"
     ],
     "context_data": [
         {

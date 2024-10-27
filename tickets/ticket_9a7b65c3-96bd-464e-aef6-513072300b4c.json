@@ -2,7 +2,7 @@
     "ticket_id": "9a7b65c3-96bd-464e-aef6-513072300b4c",
     "required_vars": [],
     "apis_to_call": [
-        "https://1902-179-56-184-112.ngrok-free.app/fakeapp/request_verification"
+        "http://192.241.152.4:4000/fakeapp/request_verification"
     ],
     "context_data": [
         {

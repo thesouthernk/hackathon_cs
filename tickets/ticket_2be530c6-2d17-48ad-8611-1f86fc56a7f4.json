@@ -2,7 +2,7 @@
     "ticket_id": "2be530c6-2d17-48ad-8611-1f86fc56a7f4",
     "required_vars": [],
     "apis_to_call": [
-        "https://1902-179-56-184-112.ngrok-free.app/fakeapp/reset_password"
+        "http://192.241.152.4:4000/fakeapp/reset_password"
     ],
     "context_data": [
         {
