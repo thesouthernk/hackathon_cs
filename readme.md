@@ -1,51 +1,32 @@
-# Proyecto MonitorAI Obserbilidad +  IA
+# Proyecto MonitorAI: Observabilidad + IA
 
-Este proyecto ayuda a hacer mucho más fácil la comunicación de los ejecutivos de soporte con los usuarios bajando las barreras de reporting, permitiendo que los usuarios reporten sus prblemas al momento y de la forma mas clara para el ejecutivo.
+Este proyecto facilita la comunicación entre los ejecutivos de soporte y los usuarios, reduciendo las barreras para reportar problemas. Permite a los usuarios informar sus inconvenientes en tiempo real, proporcionando información clara al ejecutivo de soporte.
 
-Basta de tener que ir a indagar sin información, la IA realiza la captura de datos y la decisión sobre que hacer con el ticket.
+No más búsquedas sin datos; la IA captura automáticamente la información necesaria y decide cómo proceder con el ticket.
 
-## Demo
-
-Puedes probar el widget y cargar un error en el siguiente enlace:
-
-- [Página del Widget](https://fastidious-maamoul-920dad.netlify.app/)
-
-Mientras que la visualización en streamlit se ven en siguiente
+Uso de Code GPT:
+Principalmente se uso para apoyo de programación (sobre todo en streamlit)
 ## Arquitectura
 
 ![Arquitectura de la Solución](./Arquitectura_Solucion.png)
 
-Esta es la arquitectura que representa la interacción entre las dos aplicaciones (FastAPI y Streamlit).
+La aplicación de Streamlit está disponible en el siguiente enlace:
 
-## Instalación y Ejecución
+[MonitorAI - Streamlit](http://192.241.152.4:8501/), donde puedes ver algunos casos de ejemplo.
 
-Para ejecutar la aplicación localmente con Docker, sigue los siguientes pasos:
+Las APIs para entrenar el modelo están aquí:
 
-1. Clona este repositorio:
-    ```bash
-    git clone https://github.com/tu-usuario/tu-repo.git
-    cd tu-repo
-    ```
+[MonitorAI - FastAPI](http://192.241.152.4:4000/docs). Esta app FastAPI incluye funcionalidades para exponer archivos y generar APIs que permiten al agente tomar decisiones entre un conjunto finito de acciones.
 
-2. Asegúrate de tener Docker y Docker Compose instalados.
+## Demo
 
-3. Inicia los contenedores:
-    ```bash
-    docker-compose up -d
-    ```
+Puedes probar el widget descargando la carpeta **testweb** y abriendo el archivo **index.html**.
 
-4. La aplicación Streamlit estará disponible en `http://localhost:8501` y la API de FastAPI en `http://localhost:4000`.
+Deberías ver algo como esto:  
+![Widget](./video1.gif)
 
-## Estructura del Proyecto
+Cuando cargas el reporte, el análisis se ejecuta automáticamente y se visualiza en Streamlit:  
+![Widget](./video2.gif)
 
-- **FastAPI**: Es la API backend que maneja las solicitudes de datos y se integra con la aplicación de Streamlit.
-- **Streamlit**: Proporciona la interfaz de usuario y visualización de datos.
-- **Docker**: Ambas aplicaciones se ejecutan dentro de contenedores Docker para facilitar su despliegue.
-
-## Gifs del Proceso
-
-Aquí se mostrarán dos GIFs que explican el proceso de la solución:
-
-- ![GIF 1 - Explicación](./gif1.gif) *(Aún no disponible)*
-- ![GIF 2 - Explicación](./gif2.gif) *(Aún no disponible)*
-
+Finalmente, se muestra un análisis detallado de las acciones que tomó el asistente y su respuesta al usuario:  
+![Widget](./video3.gif)
