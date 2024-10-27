@@ -8,7 +8,7 @@ Uso de Code GPT:
 Principalmente se uso para apoyo de programación (sobre todo en streamlit)
 ## Arquitectura
 
-![Arquitectura de la Solución](./Arquitectura_Solucion.png)
+![Arquitectura de la Solución](./Arquitectura Solucion.png)
 
 La aplicación de Streamlit está disponible en el siguiente enlace:
 
