@@ -228,7 +228,7 @@
             const userEmail = document.getElementById('userEmail').value;
             console.log('Enviando reporte de error con correo:', userEmail);
 
-            const response = await fetch('http://localhost:8000/api/log_error', {
+            const response = await fetch('http://192.241.152.4:4000/api/log_error', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
