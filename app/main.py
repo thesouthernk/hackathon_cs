@@ -21,5 +21,5 @@ app.include_router(error_report.router, prefix="/api")
 app.include_router(fake_apis.router, prefix="/fakeapp")
 
 # Montar archivos estáticos
-app.mount("/static", StaticFiles(directory="static"), name="static")
+app.mount("/static", StaticFiles(directory="/app/static"), name="static")
 app.mount("/screenshots", StaticFiles(directory="screenshots"), name="screenshots")
