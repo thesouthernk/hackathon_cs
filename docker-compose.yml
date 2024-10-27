@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+  fastapi:
+    build:
+      context: .
+      dockerfile: Dockerfile.fastapi
+    ports:
+      - "4000:4000"
+    volumes:
+      - ./tickets:/app/tickets
+      - ./screenshots:/app/screenshots
+      - ./logs:/app/logs
+    env_file:
+      - .env
+    depends_on:
+      - streamlit
+
+  streamlit:
+    build:
+      context: .
+      dockerfile: Dockerfile.streamlit
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./tickets:/app/tickets
+      - ./screenshots:/app/screenshots
+      - ./logs:/app/logs

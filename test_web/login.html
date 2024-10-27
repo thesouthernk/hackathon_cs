@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        .container {
+            max-width: 400px;
+            margin: 50px auto;
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+        }
+
+        button {
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .back-link {
+            margin-top: 20px;
+            display: block;
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- Reporty Widget -->
+    <script src="https://1902-179-56-184-112.ngrok-free.app/static/reporty-widget.js"></script>
+</head>
+<body>
+
+<div class="container">
+    <h1>Iniciar Sesión</h1>
+
+    <label for="login-username">Usuario</label>
+    <input type="text" id="login-username" placeholder="Ingresa tu nombre de usuario">
+
+    <label for="login-password">Contraseña</label>
+    <input type="password" id="login-password" placeholder="Ingresa tu contraseña">
+
+    <button id="login-btn">Iniciar sesión</button>
+    <a href="index.html" class="back-link">Volver al inicio</a>
+</div>
+
+<script>
+    const apiUrl = "http://localhost:8000/fakeapp";
+
+    document.getElementById('login-btn').addEventListener('click', async () => {
+        const username = document.getElementById('login-username').value;
+        const password = document.getElementById('login-password').value;
+
+        try {
+            const response = await fetch(`${apiUrl}/login`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ username, password })
+            });
+
+            // Verifica si la respuesta tiene un código de estado de error
+            if (!response.ok) {
+                const errorMessage = `Error: ${response.status} - ${response.statusText}`;
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error en el Login',
+                    text: errorMessage
+                });
+                ReportyWidget.report({
+                    title: 'Error en la API: Login',
+                    message: errorMessage,
+                    severity: 'high'
+                });
+                return; // Detiene la ejecución si hay un error
+            }
+
+            // Si llega aquí, significa que el login fue exitoso
+            Swal.fire({
+                icon: 'success',
+                title: 'Login exitoso',
+                text: 'Bienvenido a la aplicación'
+            });
+
+        } catch (error) {
+            // Captura errores de red u otros errores inesperados
+            Swal.fire({
+                icon: 'error',
+                title: 'Error en el Login',
+                text: error.message
+            });
+            ReportyWidget.report({
+                title: 'Error en la API: Login',
+                message: error.message,
+                severity: 'high'
+            });
+        }
+    });
+</script>
+
+
+</body>
+</html>

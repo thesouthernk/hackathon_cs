@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configuración Avanzada</title>
+    <style>
+        .container {
+            max-width: 400px;
+            margin: 50px auto;
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+        }
+
+        button {
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .back-link {
+            margin-top: 20px;
+            display: block;
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+    <!-- Notyf -->
+    <link href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css" rel="stylesheet"/>
+    <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
+    <!-- Reporty Widget -->
+    <script src="https://1902-179-56-184-112.ngrok-free.app/static/reporty-widget.js"></script>
+</head>
+<body>
+
+<div class="container">
+    <h1>Configuración Avanzada</h1>
+
+    <label for="setting">Configuración</label>
+    <input type="text" id="setting" placeholder="Configuración avanzada">
+
+    <label for="value">Valor</label>
+    <input type="text" id="value" placeholder="Valor para la configuración">
+
+    <button id="advanced-settings-btn">Guardar Configuración</button>
+    <a href="index.html" class="back-link">Volver al inicio</a>
+</div>
+
+<script>
+    const apiUrl = "http://localhost:8000/fakeapp";
+    const notyf = new Notyf();
+
+    document.getElementById('advanced-settings-btn').addEventListener('click', async () => {
+        const setting = document.getElementById('setting').value;
+        const value = document.getElementById('value').value;
+
+        try {
+            await fetch(`${apiUrl}/advanced_settings`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ setting, value })
+            });
+        } catch (error) {
+            notyf.error('Error en la configuración avanzada: ' + error.message);
+            ReportyWidget.report({
+                title: 'Error en la API: Configuración Avanzada',
+                message: error.message,
+                severity: 'high'
+            });
+        }
+    });
+</script>
+
+</body>
+</html>

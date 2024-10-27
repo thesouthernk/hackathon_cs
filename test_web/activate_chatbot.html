@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Activar Chatbot</title>
+    <style>
+        .container {
+            max-width: 400px;
+            margin: 50px auto;
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        select, input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+        }
+
+        button {
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .switch {
+            margin: 15px 0;
+        }
+
+        .back-link {
+            margin-top: 20px;
+            display: block;
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- Reporty Widget -->
+    <script src="https://1902-179-56-184-112.ngrok-free.app/static/reporty-widget.js"></script>
+</head>
+<body>
+
+<div class="container">
+    <h1>Activar Chatbot</h1>
+
+    <label for="chatbot-list">Selecciona el Chatbot</label>
+    <select id="chatbot-list">
+        <option value="chatbot1">Chatbot 1</option>
+        <option value="chatbot2">Chatbot 2</option>
+        <option value="chatbot3">Chatbot 3</option>
+    </select>
+
+    <div class="switch">
+        <label for="activate-chatbot">Activar Chatbot</label>
+        <input type="checkbox" id="activate-chatbot"> Activar
+    </div>
+
+    <button id="activate-chatbot-btn">Enviar</button>
+    <a href="index.html" class="back-link">Volver al inicio</a>
+</div>
+
+<script>
+    const apiUrl = "http://localhost:8000/fakeapp";
+
+    async function callApi(endpoint, method = 'POST', body = {}) {
+        try {
+            const response = await fetch(`${apiUrl}${endpoint}`, {
+                method: method,
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(body)
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.detail || 'Error desconocido');
+            }
+
+            return await response.json();
+        } catch (error) {
+            ReportyWidget.report({
+                title: `Error en la API: ${endpoint}`,
+                message: error.message,
+                severity: 'high'
+            });
+            throw error;
+        }
+    }
+
+    document.getElementById('activate-chatbot-btn').addEventListener('click', async () => {
+        const chatbot_id = document.getElementById('chatbot-list').value;
+        const activate = document.getElementById('activate-chatbot').checked;
+
+        try {
+            await callApi('/activate_chatbot', 'POST', { chatbot_id, activate });
+            Swal.fire({
+                icon: 'success',
+                title: 'Chatbot Activado',
+                text: 'El chatbot ha sido activado correctamente.'
+            });
+        } catch (error) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error de Activación',
+                text: error.message
+            });
+        }
+    });
+</script>
+
+</body>
+</html>

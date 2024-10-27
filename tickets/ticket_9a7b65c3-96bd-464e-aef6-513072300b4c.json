@@ -1,0 +1,56 @@
+{
+    "ticket_id": "9a7b65c3-96bd-464e-aef6-513072300b4c",
+    "required_vars": [],
+    "apis_to_call": [
+        "https://1902-179-56-184-112.ngrok-free.app/fakeapp/request_verification"
+    ],
+    "context_data": [
+        {
+            "message": "Se ha enviado un nuevo enlace de verificaci\u00f3n a jmansillamo@gmail.com. Revisa tu bandeja de entrada."
+        }
+    ],
+    "Suggested_Answer": "\u00a1Hola! \ud83d\ude0a\n\nHemos detectado un error en tu solicitud. Parece que la cuenta est\u00e1 bloqueada por m\u00faltiples intentos fallidos.\n\nPara ayudarte a desbloquear tu cuenta, hemos enviado un enlace de verificaci\u00f3n a tu correo electr\u00f3nico. Revisa tu bandeja de entrada para seguir los pasos necesarios.\n\n**\u00bfHay algo m\u00e1s en lo que podamos ayudarte?**\n\n\u00a1Gracias por confiar en nosotros! \ud83d\ude80",
+    "required_human": true,
+    "send": true,
+    "origin": "widget",
+    "info_error": [
+        "La cuenta est\u00e1 bloqueada por m\u00faltiples intentos fallidos.",
+        "Se ha enviado un enlace de verificaci\u00f3n a tu correo electr\u00f3nico.",
+        "Revisa tu bandeja de entrada para seguir los pasos necesarios."
+    ],
+    "api_requirement_json": {
+        "execution_needed": true,
+        "apis_to_call": [
+            {
+                "url": "/request_verification",
+                "method": "POST",
+                "required_vars": [
+                    "email"
+                ],
+                "values": {
+                    "email": "jmansillamo@gmail.com"
+                }
+            }
+        ]
+    },
+    "log_data": {
+        "image_json": {
+            "error_detected": true,
+            "error_description": "ReporWidget is not defined",
+            "type_error": "api error"
+        },
+        "error_logs": {
+            "user_email": "jmansillamo@gmail.com",
+            "console_logs": "Error de API detectado (fetch): 403",
+            "network_logs": [
+                {
+                    "request": "POST http://localhost:8000/fakeapp/login",
+                    "body": "{\"username\":\"admin\",\"password\":\"admin\"}",
+                    "status": 403,
+                    "response": "{\"detail\":\"La cuenta est\u00e1 bloqueada por m\u00faltiples intentos fallidos.\"}"
+                }
+            ],
+            "timestamp": "20241027_004046"
+        }
+    }
+}

@@ -1,0 +1,57 @@
+{
+    "ticket_id": "2be530c6-2d17-48ad-8611-1f86fc56a7f4",
+    "required_vars": [],
+    "apis_to_call": [
+        "https://1902-179-56-184-112.ngrok-free.app/fakeapp/reset_password"
+    ],
+    "context_data": [
+        {
+            "detail": "Correo electr\u00f3nico no registrado."
+        }
+    ],
+    "Suggested_Answer": "\u00a1Hola! \ud83d\ude0a Queremos informarte que hemos escalado tu solicitud al equipo especializado para brindarte una soluci\u00f3n lo m\u00e1s pronto posible. Te mantendremos al tanto de cualquier actualizaci\u00f3n. Agradecemos tu paciencia y comprensi\u00f3n. Si tienes alguna otra consulta, no dudes en contactarnos. \u00a1Gracias por ser parte de nuestra comunidad! \ud83d\ude80",
+    "required_human": true,
+    "send": false,
+    "origin": "widget",
+    "info_error": [
+        "Error al Restaurar",
+        "Error de API detectado (fetch): 422",
+        "El campo service_id es requerido",
+        "Correo electr\u00f3nico no registrado."
+    ],
+    "api_requirement_json": {
+        "execution_needed": true,
+        "apis_to_call": [
+            {
+                "url": "/reset_password",
+                "method": "POST",
+                "required_vars": [
+                    "email"
+                ],
+                "values": {
+                    "email": "jmansillamo@gmail.com"
+                }
+            }
+        ]
+    },
+    "log_data": {
+        "image_json": {
+            "error_detected": true,
+            "error_description": "Error al Restaurar",
+            "type_error": "restaurar"
+        },
+        "error_logs": {
+            "user_email": "jmansillamo@gmail.com",
+            "console_logs": "Error de API detectado (fetch): 422",
+            "network_logs": [
+                {
+                    "request": "POST http://localhost:8000/fakeapp/restore_service",
+                    "body": "{\"service_id\":\"service2\"}",
+                    "status": 422,
+                    "response": "{\"detail\":[{\"type\":\"missing\",\"loc\":[\"query\",\"service_id\"],\"msg\":\"Field required\",\"input\":null}]}"
+                }
+            ],
+            "timestamp": "20241026_235103"
+        }
+    }
+}

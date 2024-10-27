@@ -1,0 +1,13 @@
+{
+    "user_email": "jmansillamo@gmail.com",
+    "console_logs": "Error de API detectado (fetch): 422",
+    "network_logs": [
+        {
+            "request": "POST http://localhost:8000/fakeapp/restore_service",
+            "body": "{\"service_id\":\"service3\"}",
+            "status": 422,
+            "response": "{\"detail\":[{\"type\":\"missing\",\"loc\":[\"query\",\"service_id\"],\"msg\":\"Field required\",\"input\":null}]}"
+        }
+    ],
+    "timestamp": "20241026_201213"
+}

@@ -1,0 +1,13 @@
+{
+    "user_email": "jmansillamo@gmail.com",
+    "console_logs": "Error de API detectado (fetch): 403",
+    "network_logs": [
+        {
+            "request": "POST http://localhost:8000/fakeapp/login",
+            "body": "{\"username\":\"admin\",\"password\":\"admin\"}",
+            "status": 403,
+            "response": "{\"detail\":\"La cuenta est\u00e1 bloqueada por m\u00faltiples intentos fallidos.\"}"
+        }
+    ],
+    "timestamp": "20241027_004152"
+}

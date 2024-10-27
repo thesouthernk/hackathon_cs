@@ -1,6 +1,0 @@
-Email: jmansillamo@gmail.com
-Console Logs: Error en la solicitud (fetch): TypeError: Failed to fetch
-API request failed: TypeError: Failed to fetch
-Screenshot saved at: screenshots\screenshot_20241026_105048.png
-Timestamp: 20241026_105048
-

@@ -1,0 +1,13 @@
+{
+    "user_email": "jmansillamo@gmail.com",
+    "console_logs": "Error de API detectado (fetch): 400",
+    "network_logs": [
+        {
+            "request": "POST http://localhost:8000/fakeapp/activate_chatbot",
+            "body": "{\"chatbot_id\":\"chatbot2\",\"activate\":true}",
+            "status": 400,
+            "response": "{\"detail\":\"Falta configuraci\u00f3n: no se ha asociado un n\u00famero telef\u00f3nico al chatbot.\"}"
+        }
+    ],
+    "timestamp": "20241026_200443"
+}

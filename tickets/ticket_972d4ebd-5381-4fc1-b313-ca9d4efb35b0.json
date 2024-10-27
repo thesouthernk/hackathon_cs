@@ -1,0 +1,77 @@
+{
+    "ticket_id": "972d4ebd-5381-4fc1-b313-ca9d4efb35b0",
+    "required_vars": [
+        [
+            "phone_number"
+        ]
+    ],
+    "apis_to_call": [
+        "https://1902-179-56-184-112.ngrok-free.app/fakeapp/list_phone_numbers",
+        "https://1902-179-56-184-112.ngrok-free.app/fakeapp/associate_phone_number_to_chatbot"
+    ],
+    "context_data": [
+        {
+            "available_phone_numbers": [
+                {
+                    "id": "1",
+                    "number": "+1234567890"
+                },
+                {
+                    "id": "2",
+                    "number": "+0987654321"
+                }
+            ]
+        }
+    ],
+    "Suggested_Answer": "\u00a1Hola! \ud83d\ude0a\n\nEsperamos que est\u00e9s teniendo un excelente d\u00eda.\n\nPara poder ayudarte de la mejor manera posible con tu solicitud, necesitamos que nos proporciones el n\u00famero al que le quieres asignar el chatbot. Esto nos permitir\u00e1 brindarte una soluci\u00f3n m\u00e1s r\u00e1pida y efectiva.\n\n\u00a1Gracias por tu comprensi\u00f3n y colaboraci\u00f3n! \ud83d\ude80",
+    "required_human": true,
+    "send": true,
+    "origin": "widget",
+    "info_error": [
+        "Error de API detectado (fetch): 400",
+        "Falta configuraci\u00f3n: no se ha asociado un n\u00famero telef\u00f3nico al chatbot.",
+        "Se requiere informaci\u00f3n adicional: n\u00famero telef\u00f3nico"
+    ],
+    "api_requirement_json": {
+        "execution_needed": true,
+        "apis_to_call": [
+            {
+                "url": "/list_phone_numbers",
+                "method": "GET",
+                "required_vars": []
+            },
+            {
+                "url": "/associate_phone_number_to_chatbot",
+                "method": "POST",
+                "required_vars": [
+                    "chatbot_id",
+                    "phone_number"
+                ],
+                "values": {
+                    "chatbot_id": "chatbot2",
+                    "phone_number": "requested"
+                }
+            }
+        ]
+    },
+    "log_data": {
+        "image_json": {
+            "error_detected": true,
+            "error_description": "ReportWidget is not defined",
+            "type_error": "api error"
+        },
+        "error_logs": {
+            "user_email": "jmansillamo@gmail.com",
+            "console_logs": "Error de API detectado (fetch): 400",
+            "network_logs": [
+                {
+                    "request": "POST http://localhost:8000/fakeapp/activate_chatbot",
+                    "body": "{\"chatbot_id\":\"chatbot2\",\"activate\":true}",
+                    "status": 400,
+                    "response": "{\"detail\":\"Falta configuraci\u00f3n: no se ha asociado un n\u00famero telef\u00f3nico al chatbot.\"}"
+                }
+            ],
+            "timestamp": "20241026_200443"
+        }
+    }
+}
